@@ -32,19 +32,21 @@ All of these commands require the zond node is installed and the `zond-cli` exec
 
 ### Address Identification
 
-Both types of addresses generate a 42 character public key that starts with `0x`. THe following character determines if the address is XMSS or Dilithium.
+Both types of addresses generate a 42 character (*20 bytes prefixed with 0x*) public key. 
 
-| Address | Type  |
-|--|--|
-| `0x10...` | XMSS Address |
-| `0x20...` | Dilithium Address |
+The first Byte after the `0x` prefix indicates the address type: `10` for XMSS and `20` Dilithium.
+
+| Address | Identification Byte | Type  |
+|--|--|--|
+| 0x1005003ea6ed78d597e7411a8ddbc2dffd8839e5| `0x10...` | XMSS Address |
+| 0x20bf1acdae054f4194e0c132b489e8f9099caf8c| `0x20...` | Dilithium Address |
 
 Additional differences can be seen in the secret keys for both address types.
 
 |  Address Type | Secret Key  |
 |---- |---|
 | Dilithium Secret Key | 0xdf37d59bd41017c0477fc23df044df2ece1fa6df87e03be50657b0336211b55d7f8c19c66b44bf033a798da2c3901c38 |
-| XMSS Secret Key | 0x1005004dd2e5bbe5e699c3ca55f71acc61b57cc5b44519967d0fba0bacfc3fcfbcdbf806e7edd44a5b837e570ec517b41747e7badge |
+| XMSS Secret Key | 0x1005004dd2e5bbe5e699c3ca55f71acc61b57cc5b44519967d0fba0bacfc3fcfbcdbf806e7edd44a5b837e570ec517b41747e7 |
 
 ## Generate New Dilithium Address
 
@@ -83,8 +85,8 @@ Mnemonic:   task less orphan driver blaser agony lip canvas vague fee comic text
 ./zond-cli wallet secret
 
 ##Response
-# Index       Public Address                              Hex Seed                                                                                            Mnemonic 
-  1           0x20bf1acdae054f4194e0c132b489e8f9099caf8c  0xdf37d59bd41017c0477fc23df044df2ece1fa6df87e03be50657b0336211b55d7f8c19c66b44bf033a798da2c3901c38  task less orphan driver blaser agony lip canvas vague fee comic text plush wheel tech saloon allot laws cried butler reply strand mighty outer home faint aedes police mix close mosque serial
+# Index  Public Address                              Hex Seed                                                                                            Mnemonic 
+  1      0x20bf1acdae054f4194e0c132b489e8f9099caf8c  0xdf37d59bd41017c0477fc23df044df2ece1fa6df87e03be50657b0336211b55d7f8c19c66b44bf033a798da2c3901c38  task less orphan driver blaser agony lip canvas vague fee comic text plush wheel tech saloon allot laws cried butler reply strand mighty outer home faint aedes police mix close mosque serial
 ```
 
 
@@ -127,7 +129,29 @@ Mnemonic:   badge filled feat colt rumble glow older digit fort invest slump bou
 
 ### List Addresses
 
+
+```bash
+./zond-cli wallet list
+
+##Response
+# Index   Address                                     Balance
+  1       0x1005003ea6ed78d597e7411a8ddbc2dffd8839e5  0
+````
+
 ### Show Secret Keys
 
 
+```bash
+./zond-cli wallet secret
 
+##Response
+# Index  Public Address                              Hex Seed                                                                                            Mnemonic 
+  1      0x1005003ea6ed78d597e7411a8ddbc2dffd8839e5  1005004dd2e5bbe5e699c3ca55f71acc61b57cc5b44519967d0fba0bacfc3fcfbcdbf806e7edd44a5b837e570ec517b41747e7badge filled feat colt rumble glow older digit fort invest slump bounce lemon gaul egypt often lent witty artful soon drag woke swap liz touch synod exempt riot libya inset share layman birth lick
+```
+
+
+## Transfer From Dilithium
+
+```bash
+./zond-cli tx transferFromDilithium --account-index 1 --chain-id 1 --to "0x202d32684da044f95790081d3b7faa67c52dd538" --nonce 1 --amount 1000 --gas 1 --gas-price 1 --wallet-file wallet.json --broadcast
+``` 
