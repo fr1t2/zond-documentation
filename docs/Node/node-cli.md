@@ -546,6 +546,14 @@ OPTIONS:
 
 #### `tx transferFromDilithium` Example Command
 
+:::caution
+Under Development - Use the [API call instead](/node/node-api)
+:::
+
+```bash
+./zond-cli tx transferFromDilithium --account-index 1 --chain-id 1 --to "0x202d32684da044f95790081d3b7faa67c52dd538" --nonce 1 --amount 1000 --gas 1 --gas-price 1 --wallet-file wallet.json --broadcast
+``` 
+
 #### `tx transferFromDilithium` Response
 
 ### `tx deployContractFromDilithium`
