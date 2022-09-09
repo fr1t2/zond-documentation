@@ -7,7 +7,8 @@
  The sidebars can be generated from the filesystem, or explicitly defined here.
 
  Create as many sidebars as you want.
- */
+
+
 module.exports = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
   gettingStarted: [
@@ -16,7 +17,41 @@ module.exports = {
       dirName: '.'
     },    
   ],
+ */
 
+module.exports = {
+  // By default, Docusaurus generates a sidebar from the docs folder structure
+  gettingStarted: [
+        'getting-started',
+        {
+          // Basics category for things like what is QRL, blockchain, XMSS OTS keys, Quantum Threat etc
+          type: 'category',
+          label: 'Node',
+          link: {type: 'doc', id: 'Node/zond-node'},
+          collapsible: true,
+          collapsed: true,
+          items: ['Node/node-requirements', 'Node/node-installation', 'Node/node-cli', 'Node/node-api', 'Node/node-private-network']
+        },
+        {
+          // Basics category for things like what is QRL, blockchain, XMSS OTS keys, Quantum Threat etc
+          type: 'category',
+          label: 'Wallet',
+          link: {type: 'doc', id: 'Wallet/zond-wallet'},
+          collapsible: true,
+          collapsed: true,
+          items: ['Wallet/node-cli-wallet']
+        },
+        {
+          // Basics category for things like what is QRL, blockchain, XMSS OTS keys, Quantum Threat etc
+          type: 'category',
+          label: 'QRVM',
+          link: {type: 'doc', id: 'QRVM/qrvm'},
+          collapsible: true,
+          collapsed: true,
+          items: []
+        },
+  ]
+}
 
   
 /*
@@ -25,7 +60,7 @@ module.exports = {
   gettingStarted: [
         'getting-started',
     {
-      // Learn category for begenniong and introduction documentation
+      // Learn category for beginning and introduction documentation
       type: 'category',
       label: 'Learn',
       collapsible: false,
@@ -294,8 +329,8 @@ module.exports = {
       items: ['hello'],
     },
   ],
-   */
 };
+   */
 
 /*
 

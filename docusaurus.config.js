@@ -36,11 +36,11 @@ module.exports = {
   },
 */
 
-  tagline: 'Documentation for The Quantum Resistant Ledger Ecosystem',
+  tagline: 'Documentation for The Quantum Resistant Ledger Zond POS Blockchain',
   onBrokenMarkdownLinks: 'warn',
   onBrokenLinks: 'warn',
   organizationName: 'theQRL', // Usually your GitHub org/user name.
-  projectName: 'The Quantum Resistant Ledger', // Usually your repo name.
+  projectName: 'Zond', // Usually your repo name.
   
 
 
@@ -52,7 +52,8 @@ module.exports = {
       }
     },
     navbar: {
-      title: 'Zond Documentation',
+      title: 'Zond Docs',
+      hideOnScroll: true,
       logo: {
         alt: 'The QRL Logo',
         src: 'assets/img/icons/qrl-logo.svg',
@@ -60,13 +61,46 @@ module.exports = {
       items: [
         {
           to: '/', 
-          label: 'Docs', 
+          label: 'Getting Started', 
           position: 'left'
         },
         {
+          to: 'Node', 
+          label: 'Node', 
+          position: 'left'
+        },
+        {
+          to: 'Wallet', 
+          label: 'Wallet', 
+          position: 'left'
+        },
+        {
+          to: 'QRVM', 
+          label: 'QRVM', 
+          position: 'left'
+        },
+/*
+        {
+          type: 'docSidebar',
+          position: 'left',
+          sidebarId: 'gettingStarted',
+          label: 'Node',
+        },
+         {
           to: '/tutorials', 
           label: 'Tutorials', 
           position: 'left'
+        },
+*/        
+        {
+          to: 'https://theqrl.org', 
+          label: 'The QRL', 
+          position: 'right'
+        },
+        {
+          to: 'https://theqrl.org/discord', 
+          label: 'Discord', 
+          position: 'right'
         },
         {
           href: 'https://github.com/theqrl/documentation',
