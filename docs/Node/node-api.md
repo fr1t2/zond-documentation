@@ -23,27 +23,20 @@ import TabItem from '@theme/TabItem';
 
 :::caution DOCUMENT STATUS 
 <span>This document is in: <b>{frontMatter.docstatus}</b> status and needs additional input!</span>
-
 THIS API IS UNDER HEAVY DEVELOPMENT!!
 
-Things *WILL* change frequently and will likely break as we work through to the final product.
-
-Please be patient!
+Things *WILL* change frequently and will likely break as we work through to the final product.Please be patient!
 
 ---
-
 Needed:
-
 - Explainer for connecting and API info
 - command examples and responses from each call
 
 FIXME:
-
 - When user config is supported change the API public port configuration data in [Connection Info](#connection-info)
 - zond_getCode - Need to update with working example that returns code
 - zond_call - Need to update with good response from call
 - zond_getLogs - Need to update with good response from call
-
 :::
 
 
@@ -194,35 +187,7 @@ The following options are possible for the defaultBlock parameter:
 - `String "latest"` - for the latest mined block
 - `String "pending"` - for the pending state/transactions
 
-
-
-
-
-
-
-
-
-
-
-zond_getHeaderByHash
-zond_getBlockByNumber
-zond_getBlockByHash
-zond_getCode
-
-zond_getStorageAt
-zond_call
-zond_getBlockTransactionCountByNumber
-zond_getBlockTransactionCountByHash
-zond_getTransactionByBlockNumberAndIndex
-zond_getTransactionByBlockHashAndIndex
-zond_sendRawTransaction
-
-
-zond_getLogs
-zond_getReceipts
-zond_getTransaction
-
-
+## JSON-RPC API METHODS
 
 
 ## `zond_chainId`

@@ -63,7 +63,7 @@ git clone https://github.com/theqrl/zond ~/zond
 cd ~/zond
 
 #2 Download the bootstrap files
-mkdir ~/zond/devnet_bootstrap && wget NEED_LINK_TO_PUBLIC_BOOTSTRAP_FILES -O ~/zond/devnet_bootstrap/bootstrap-devnet.zip
+mkdir ~/zond/devnet_bootstrap && wget https://zond-docs.fr1t2.com/assets/nodeAssets/bootstrap-devnet.zip -O ~/zond/devnet_bootstrap/bootstrap-devnet.zip
 
 #3 Unzip bootstrap files
 unzip ~/zond/devnet_bootstrap/bootstrap-devnet.zip -d ~/zond/devnet_bootstrap/
