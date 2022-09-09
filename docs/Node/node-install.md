@@ -31,73 +31,62 @@ import TabItem from '@theme/TabItem';
 
 Installation instructions for The QRL POS Project Zond node installation. This document covers getting started installing the Zond node software and will allow interaction with the Zond blockchain, as well as additional tools.
 
-With the Zond node you can:
-
-- Stake Zond on the network
-
+:::danger
+These instructions will change frequently as we develop the node software. Check back often as these will be kept up to date until the final solution is in place.
+:::
 
 ### Requirements
 
 - Golang 
 
-
-
-## Current Zond Install Instructions
-
-These are temporary installation instructions to get started with running a zond node.
-
-:::danger
-These instructions will change frequently as we develop the node software. Check back often as these will be kept up to date until the final solution is in place.
-:::
-
-
-### Install Instructions
-
-Assuming you are using a Linux distribution:
-
-```bash
-#0. Remove any old install files
-rm -rf ~/.zond/data
-rm -rf ~/.zond/dilithium_keys
-
-#0.1 Clone repo
-git clone https://github.com/theqrl/zond ~/zond
-cd ~/zond
-
-#1. Build zond-cli and bootstrap files
-go build ./cmd/zond-cli
-# Now bootstrap files
-./zond-cli dev genesis-bootstrap
-
-#2. Copy the foundation dilithium address provided in step 1 and set the variable `binFoundationDilithiumAddress` in config/config.go  with the new foundation dilithium address value:
-# Line #278 https://github.com/theZond/zond/blob/d0e8278421223b74320b6e64223fed55c0802802/config/config.go#L278
-######
-binFoundationDilithiumAddress, err := misc.HexStrToBytes("FOUNDATION_DILITHIUM_ADDRESS_FROM_STEP_#1")
-######
-
-#3. Create new devnet block directory
-mkdir ~/zond/block/genesis/devnet
-
-#4. Copy the bootstrap files `prestate.yml and genesis.yml` into the new directory from step #3
-cp ~/zond/bootstrap/prestate.yml ~/zond/block/genesis/devnet/prestate.yml
-cp ~/zond/bootstrap/genesis.yml ~/zond/block/genesis/devnet/genesis.yml
-
-#5. Create the hidden `.zond` directory for the node files and copy in the dilithium keys generated during the bootstrap process.
-mkdir ~/.zond
-cp ~/zond/bootstrap/dilithium_keys ~/.zond
-
-#6. Build the node using Golang and the configuration provided
-cd ~/zond
-go build ./cmd/gzond
-
-#7. Start the node using the new `gzond` command
-./gzond
-
-```
-
 :::info Minimum Node Hardware Requirements
 There are some basic requirements that must be met to run a Zond node. See the [Zond Node Requirements](node-requirements) documentation for more info.
 :::
+
+## Development Install
+
+
+To install the development node used for initial testing and development of both the POS network and QRVM smart contracts. Follow these directions to install the node locally.
+
+
+### Prerequisite
+
+- Remove any previous node installation files `~/.zond`
+- Ensure the local copy of the Zond github repo has the latest code
+
+
+```bash
+#0 Download the Zond node software into users home directory 
+git clone https://github.com/theqrl/zond ~/zond
+
+#1 Enter the zond directory
+cd ~/zond
+
+#2 Download the bootstrap files
+mkdir ~/zond/devnet_bootstrap && wget NEED_LINK_TO_PUBLIC_BOOTSTRAP_FILES -O ~/zond/devnet_bootstrap/bootstrap-devnet.zip
+
+#3 Unzip bootstrap files
+unzip ~/zond/devnet_bootstrap/bootstrap-devnet.zip -d ~/zond/devnet_bootstrap/
+
+#4 Copy the genesis files into the correct directories
+cp ~/zond/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
+
+#5 Copy the working devnet config file into the correct directory
+cp ~/zond/bootstrap-devnet/config/config.go ~/zond/config/config.go
+
+#6 Update the PeerList: configuration with foundation peer address
+#  In config/config.go update PeerList from:
+PeerList:                []string{},
+#  to:
+PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmcN5aCeCCYHXcFN1GqWt3Dxj3UTan5Ds9hnCB5idvPAu8"},
+
+#7 Build the node
+go build ./cmd/gzond
+````
+
+
+
+## Zond Node Installation
 
 Follow the directions below to get started running a Zond POS Node.
 
@@ -112,46 +101,39 @@ Follow the directions below to get started running a Zond POS Node.
 
 <TabItem value="ubuntu">
 
-## Zond Ubuntu Installation
+#### Zond Ubuntu Installation
 Installation instructions for the Zond Node on Ubuntu.
 
 Tested in the latest LTS version `Ubuntu 20.04`
 
 ```bash
-#0. Remove any old install files
-rm -rf ~/.zond/data
-rm -rf ~/.zond/dilithium_keys
-
-#0.1 Clone repo
+#0 Download the Zond node software into users home directory 
 git clone https://github.com/theqrl/zond ~/zond
+
+#1 Enter the zond directory
 cd ~/zond
 
-#1. Build zond-cli and bootstrap files
-go build ./cmd/zond-cli
-# Now bootstrap files
-./zond-cli dev genesis-bootstrap
+#2 Download the bootstrap files
+mkdir ~/zond/devnet_bootstrap && wget NEED_LINK_TO_PUBLIC_BOOTSTRAP_FILES -O ~/zond/devnet_bootstrap/bootstrap-devnet.zip
 
-#2. Copy the foundation dilithium address provided in step 1 and set the variable `binFoundationDilithiumAddress` in config/config.go  with the new foundation dilithium address value:
-# Line #278 https://github.com/theZond/zond/blob/d0e8278421223b74320b6e64223fed55c0802802/config/config.go#L278
-######
-binFoundationDilithiumAddress, err := misc.HexStrToBytes("FOUNDATION_DILITHIUM_ADDRESS_FROM_STEP_#1")
-######
+#3 Unzip bootstrap files
+unzip ~/zond/devnet_bootstrap/bootstrap-devnet.zip -d ~/zond/devnet_bootstrap/
 
-#3. Create new devnet block directory
-mkdir ~/zond/block/genesis/devnet
+#4 Copy the genesis files into the correct directories
+cp ~/zond/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
 
-#4. Copy the bootstrap files `prestate.yml and genesis.yml` into the new directory from step #3
-cp ~/zond/bootstrap/prestate.yml ~/zond/block/genesis/devnet/prestate.yml
-cp ~/zond/bootstrap/genesis.yml ~/zond/block/genesis/devnet/genesis.yml
+#5 Copy the working devnet config file into the correct directory
+cp ~/zond/bootstrap-devnet/config/config.go ~/zond/config/config.go
 
-#5. Create the hidden `.zond` directory for the node files and copy in the dilithium keys generated during the bootstrap process.
-mkdir ~/.zond
-cp ~/zond/bootstrap/dilithium_keys ~/.zond
+#6 Update the PeerList: configuration with foundation peer address
+#  In config/config.go update PeerList from:
+PeerList:                []string{},
+#  to:
+PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmcN5aCeCCYHXcFN1GqWt3Dxj3UTan5Ds9hnCB5idvPAu8"},
 
-#6. Build the node using Golang and the configuration provided
-cd ~/zond
+#7 Build the node
 go build ./cmd/gzond
-```
+````
 
 :::tip 
 This is the recommended installation method, and most common way to run a Zond Node.
@@ -160,7 +142,8 @@ This is the recommended installation method, and most common way to run a Zond N
 </TabItem>
 <TabItem value="macos">
 
-## Zond MacOS Installation
+#### Zond MacOS Installation
+
 Installation instructions for the Zond Node on MacOS. Tested with the latest MacOS version `Big Sur 11.6`
 
 
@@ -171,9 +154,10 @@ Installation instructions for the Zond Node on MacOS. Tested with the latest Mac
 > FIXME!! Need to update install instructions for MacOS
 
 </TabItem>
-<TabItem value="redhat">
+<TabItem value="windows">
 
-## Zond Windows Installation
+#### Zond Windows Installation
+
 Installation instructions for the Zond Node on Windows.
 
 ```bash
