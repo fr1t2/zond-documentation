@@ -5,7 +5,7 @@ title: Zond Node Private Network
 hide_title: false
 hide_table_of_contents: false
 sidebar_label: Zond Node - Private Network
-sidebar_position: 6
+sidebar_position: 7
 pagination_label: Zond Node - Private Network
 custom_edit_url: https://github.com/theqrl/documentation/edit/master/docs/basics/what-is-qrl.md
 description: Zond Node Private Network

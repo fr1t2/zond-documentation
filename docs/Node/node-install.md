@@ -35,13 +35,6 @@ Installation instructions for The QRL POS Project Zond node installation. This d
 These instructions will change frequently as we develop the node software. Check back often as these will be kept up to date until the final solution is in place.
 :::
 
-### Requirements
-
-- Golang 
-
-:::info Minimum Node Hardware Requirements
-There are some basic requirements that must be met to run a Zond node. See the [Zond Node Requirements](node-requirements) documentation for more info.
-:::
 
 ## Development Install
 
@@ -51,39 +44,122 @@ To install the development node used for initial testing and development of both
 
 ### Prerequisite
 
+- GO is installed
 - Remove any previous node installation files `~/.zond`
 - Ensure the local copy of the Zond github repo has the latest code
+- Bootstrap files are the latest
 
+:::info Minimum Node Hardware Requirements
+There are some basic requirements that must be met to run a Zond node *(Yet to be defined)*. See the [Zond Node Requirements](node-requirements) documentation for more info.
+:::
+
+
+### BootStrap Files
+
+Bootstrap files are generated during the genesis of the DEVNET and will need to be copied into your local node in order to sync with the public network. We do this now due to the frequent changes being released during development. This will not be needed for production.
+
+The latest Bootstrap files can be downloaded here [zond-docs.theqrl.org/node/bootstrap-devnet.zip](https://zond-docs.theqrl.org/node/bootstrap-devnet.zip) or following the installation directions below.
+
+####  Bootstrap Directory Tree
+
+```bash 
+~/Downloads/bootstrap-devnet/
+├── block
+│   └── genesis
+│       └── devnet
+│           ├── genesis.yml
+│           └── prestate.yml
+└── config
+    └── config.go
+
+```
+
+### Development Install 
 
 ```bash
-#0 Download the Zond node software into users home directory 
+# Remove any old installs and download the Zond node software into users home directory 
+rm -rf ~/.zond
+rm -rf ~/zond
+rm -rf ~/Downloads/bootstrap-devnet 
+rm -rf ~/Downloads/bootstrap-devnet.zip
+
+
+# clone the zond repo, grabbing the latest code
 git clone https://github.com/theqrl/zond ~/zond
 
-#1 Enter the zond directory
-cd ~/zond
+# Download the bootstrap files and unzip
+wget https://zond-docs.theqrl.org/node/bootstrap-devnet.zip -O ~/Downloads/bootstrap-devnet.zip
+unzip ~/Downloads/bootstrap-devnet.zip -d ~/Downloads/
 
-#2 Download the bootstrap files
-mkdir ~/zond/devnet_bootstrap && wget https://zond-docs.fr1t2.com/assets/nodeAssets/bootstrap-devnet.zip -O ~/zond/devnet_bootstrap/bootstrap-devnet.zip
+# Copy the genesis files and configuration into the correct directories
+cp -r ~/Downloads/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
+cp ~/Downloads/bootstrap-devnet/config/config.go ~/zond/config/config.go
 
-#3 Unzip bootstrap files
-unzip ~/zond/devnet_bootstrap/bootstrap-devnet.zip -d ~/zond/devnet_bootstrap/
-
-#4 Copy the genesis files into the correct directories
-cp ~/zond/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
-
-#5 Copy the working devnet config file into the correct directory
-cp ~/zond/bootstrap-devnet/config/config.go ~/zond/config/config.go
-
-#6 Update the PeerList: configuration with foundation peer address
-#  In config/config.go update PeerList from:
-PeerList:                []string{},
+## Update the PeerList: configuration with foundation peer address
+#  In config/config.go update PeerList 
+#  from:
+        PeerList:                []string{},
 #  to:
-PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmcN5aCeCCYHXcFN1GqWt3Dxj3UTan5Ds9hnCB5idvPAu8"},
+        PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmU6Uo93bSgU7bA8bkbdNhSfbmp7S5XJEcSqgrdLzH6ksT"},
 
-#7 Build the node
+# Build the node
+cd zond
+go build ~/zond/cmd/zond-cli
 go build ./cmd/gzond
 ````
 
+### Development Install Script
+
+Use this script to update to the latest zond install. 
+
+:::note
+Assumes that the bootstrap files are downloaded into the `~/Downloads/` directory. Adjust to suite your installation.
+:::
+
+#### Automated install
+
+:::caution
+Test this command for functionality!
+:::
+
+```bash
+wget https://zond-docs.theqrl.org/node/zond-dev-node-install.sh |bash
+```
+
+#### Install Script
+
+```bash
+#!/bin/bash
+
+rm -rf ~/.zond
+rm -rf ~/zond
+rm -rf ~/Downloads/bootstrap-devnet 
+rm -rf ~/Downloads/bootstrap-devnet.zip
+
+git clone https://github.com/theQRL/zond ~/zond
+
+wget https://zond-docs.theqrl.org/node/bootstrap-devnet.zip -O ~/Downloads/bootstrap-devnet.zip
+unzip ~/Downloads/bootstrap-devnet.zip -d ~/Downloads/
+
+cp -r ~/Downloads/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
+cp ~/Downloads/bootstrap-devnet/config/config.go ~/zond/config/config.go
+
+patch -u ~/zond/config/config.go -p0 <<'EOF'
+@@ -178,7 +178,7 @@
+ func GetUserConfig() (userConf *UserConfig) {
+    node := &NodeConfig{
+        EnablePeerDiscovery:     true,
+-       PeerList:                []string{},
++       PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmU6Uo93bSgU7bA8bkbdNhSfbmp7S5XJEcSqgrdLzH6ksT"},
+        BindingIP:               "0.0.0.0",
+        LocalPort:               15005,
+        PublicPort:              15005,
+EOF
+
+cd zond
+go build ~/zond/cmd/gzond
+go build ~/zond/cmd/zond-cli
+````
 
 
 ## Zond Node Installation
@@ -107,31 +183,33 @@ Installation instructions for the Zond Node on Ubuntu.
 Tested in the latest LTS version `Ubuntu 20.04`
 
 ```bash
-#0 Download the Zond node software into users home directory 
+rm -rf ~/.zond
+rm -rf ~/zond
+rm -rf ~/Downloads/bootstrap-devnet 
+rm -rf ~/Downloads/bootstrap-devnet.zip
+
+
+# clone the zond repo, grabbing the latest code
 git clone https://github.com/theqrl/zond ~/zond
 
-#1 Enter the zond directory
-cd ~/zond
+# Download the bootstrap files and unzip
+wget https://zond-docs.theqrl.org/node/bootstrap-devnet.zip -O ~/Downloads/bootstrap-devnet.zip
+unzip ~/Downloads/bootstrap-devnet.zip -d ~/Downloads/
 
-#2 Download the bootstrap files
-mkdir ~/zond/devnet_bootstrap && wget NEED_LINK_TO_PUBLIC_BOOTSTRAP_FILES -O ~/zond/devnet_bootstrap/bootstrap-devnet.zip
+# Copy the genesis files and configuration into the correct directories
+cp -r ~/Downloads/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
+cp ~/Downloads/bootstrap-devnet/config/config.go ~/zond/config/config.go
 
-#3 Unzip bootstrap files
-unzip ~/zond/devnet_bootstrap/bootstrap-devnet.zip -d ~/zond/devnet_bootstrap/
-
-#4 Copy the genesis files into the correct directories
-cp ~/zond/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
-
-#5 Copy the working devnet config file into the correct directory
-cp ~/zond/bootstrap-devnet/config/config.go ~/zond/config/config.go
-
-#6 Update the PeerList: configuration with foundation peer address
-#  In config/config.go update PeerList from:
-PeerList:                []string{},
+## Update the PeerList: configuration with foundation peer address
+#  In config/config.go update PeerList 
+#  from:
+        PeerList:                []string{},
 #  to:
-PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmcN5aCeCCYHXcFN1GqWt3Dxj3UTan5Ds9hnCB5idvPAu8"},
+        PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmU6Uo93bSgU7bA8bkbdNhSfbmp7S5XJEcSqgrdLzH6ksT"},
 
-#7 Build the node
+# Build the node
+cd zond
+go build ~/zond/cmd/zond-cli
 go build ./cmd/gzond
 ````
 
