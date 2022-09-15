@@ -5,7 +5,7 @@ title: Zond Node CLI
 hide_title: false
 hide_table_of_contents: false
 sidebar_label: Zond Node - CLI
-sidebar_position: 4
+sidebar_position: 5
 pagination_label: Zond Node - CLI
 custom_edit_url: https://github.com/theqrl/documentation/edit/master/docs/basics/what-is-qrl.md
 description: Zond Node CLI
