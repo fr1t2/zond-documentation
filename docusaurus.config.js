@@ -7,10 +7,10 @@ const katex = require('rehype-katex');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Zond Docs',
-  url: 'https://theqrl.org/docs',
+  url: 'https://zond-docs.theqrl.org',
   baseUrl: '/',
   favicon: 'assets/favicon.svg',
-  noIndex: true, // Defaults to `false`
+  noIndex: false, // Defaults to `false`
 
 /*
   i18n: {
@@ -148,7 +148,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} The Quantum Resistant Ledger. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} The Quantum Resistant Ledger.`,
     },
 
 

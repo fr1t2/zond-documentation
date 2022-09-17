@@ -110,56 +110,30 @@ go build ./cmd/gzond
 
 ### Development Install Script
 
-Use this script to update to the latest zond install. 
+For a simple, no fuss node install use the script Jack provided us. The code can be found here [github.com/jackalyst/zond-init](https://github.com/jackalyst/zond-init).
 
-:::note
-Assumes that the bootstrap files are downloaded into the `~/Downloads/` directory. Adjust to suite your installation.
-:::
-
-#### Automated install
-
-:::caution
-Test this command for functionality!
-:::
 
 ```bash
-wget https://zond-docs.theqrl.org/node/zond-dev-node-install.sh |bash
+bash <(curl -s https://raw.githubusercontent.com/jackalyst/zond-init/main/init.sh)
 ```
 
-#### Install Script
+Or grab the source and execute locally.
 
 ```bash
-#!/bin/bash
+git clone https://github.com/jackalyst/zond-init.git
+cd zond-init
+# Check the source code before executing
+less init.sh
+# Make executable and run
+chmod +x init.sh
+./init.sh
+```
 
-rm -rf ~/.zond
-rm -rf ~/zond
-rm -rf ~/Downloads/bootstrap-devnet 
-rm -rf ~/Downloads/bootstrap-devnet.zip
+:::note
+It is important to read and understand what a script is doing on your machine before you execute it. Check the source before running! [Source code is here](https://github.com/jackalyst/zond-init/blob/main/init.sh)
+:::
 
-git clone https://github.com/theQRL/zond ~/zond
-
-wget https://zond-docs.theqrl.org/node/bootstrap-devnet.zip -O ~/Downloads/bootstrap-devnet.zip
-unzip ~/Downloads/bootstrap-devnet.zip -d ~/Downloads/
-
-cp -r ~/Downloads/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
-cp ~/Downloads/bootstrap-devnet/config/config.go ~/zond/config/config.go
-
-patch -u ~/zond/config/config.go -p0 <<'EOF'
-@@ -178,7 +178,7 @@
- func GetUserConfig() (userConf *UserConfig) {
-    node := &NodeConfig{
-        EnablePeerDiscovery:     true,
--       PeerList:                []string{},
-+       PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmU6Uo93bSgU7bA8bkbdNhSfbmp7S5XJEcSqgrdLzH6ksT"},
-        BindingIP:               "0.0.0.0",
-        LocalPort:               15005,
-        PublicPort:              15005,
-EOF
-
-cd zond
-go build ~/zond/cmd/gzond
-go build ~/zond/cmd/zond-cli
-````
+There will be a few questions to answer, select (Y)es to each and there will be a running node in a screen session. `screen -r` to access it or see the logs in the `~/.zond` directory `tail -f ~/.zond/zond-daemon.log` 
 
 
 ## Zond Node Installation

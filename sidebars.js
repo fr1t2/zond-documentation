@@ -30,7 +30,7 @@ module.exports = {
           link: {type: 'doc', id: 'Node/zond-node'},
           collapsible: true,
           collapsed: true,
-          items: ['Node/node-requirements', 'Node/node-installation', 'Node/node-cli', 'Node/node-api', 'Node/node-private-network']
+          items: ['Node/node-requirements', 'Node/node-installation', 'Node/node-staking', 'Node/node-cli', 'Node/node-api', 'Node/node-private-network']
         },
         {
           // Basics category for things like what is QRL, blockchain, XMSS OTS keys, Quantum Threat etc
@@ -39,7 +39,17 @@ module.exports = {
           link: {type: 'doc', id: 'Wallet/zond-wallet'},
           collapsible: true,
           collapsed: true,
-          items: ['Wallet/node-cli-wallet']
+          items: [
+            {
+              // Basics category for things like what is QRL, blockchain, XMSS OTS keys, Quantum Threat etc
+              type: 'category',
+              label: 'Zond CLI',
+              link: {type: 'doc', id: 'Wallet/node/zond-cli'},
+              collapsible: true,
+              collapsed: true,
+              items: ['Wallet/node/zond-cli-wallet']
+            },
+          ]
         },
         {
           // Basics category for things like what is QRL, blockchain, XMSS OTS keys, Quantum Threat etc

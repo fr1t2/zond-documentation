@@ -1,6 +1,6 @@
 ---
 docstatus: DRAFT  # one of {DRAFT, 30%, 90%, COMPLETE}
-id: node-cli-wallet
+id: zond-cli-wallet
 title: Zond Node CLI Wallet
 hide_title: false
 hide_table_of_contents: false
@@ -27,7 +27,7 @@ slug: /wallet/node/node-cli-wallet
 
 
 :::note NOTE: ZOND NODE RERQUIRED
-All of these commands require the zond node is installed and the `zond-cli` executable is accessible in the current directory.
+All of these commands require the [zond node is installed](/node/node-install) and the `zond-cli` executable is accessible in the current directory.
 :::
 
 ### Address Identification
