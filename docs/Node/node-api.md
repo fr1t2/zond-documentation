@@ -3278,3 +3278,1019 @@ Need to update with good response from call
 </TabItem>
 </Tabs>
 <br />
+
+
+### `zond_getValidators`
+
+Returns current Epoch as well as each block's leader and attestors for current epoch slot.
+
+
+<Tabs
+    defaultValue="code"
+    className="unique-tabs"
+    groupId="zond_getValidators"
+    values={[
+        {label: 'Code', value: 'code'},
+        {label: 'Usage', value: 'usage'},
+    ]}>
+
+<TabItem value="usage">
+
+#### Method
+
+*POST*
+
+#### Parameters
+
+*None*
+
+
+#### Returns
+
+| Return Value | Type |  Description | 
+|---------|-----|-------|
+| epoch | DATA (*int*)  | Curent Epoch number |  
+| validatorsBySlotNumber | Object  | Array of all epoch slots, leaders and attestors  |
+
+</TabItem>
+
+<TabItem value="code" label="Code">
+
+Example code below.
+
+<Tabs
+    defaultValue="shreq"
+    className="unique-tabs"
+    groupId="zond_getValidators-code"
+    values={[
+        {label: 'Curl Request', value: 'shreq'},
+        {label: 'JS Request', value: 'jsreq'},
+        {label: 'Python Request', value: 'pyreq'},
+        {label: 'Response', value: 'resp'},
+        {label: 'Error', value: 'err'},
+    ]}>
+<TabItem value="shreq" label="Curl Request" default>
+
+```bash
+curl --location --request POST 'http://45.76.43.83:4545' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "jsonrpc": "2.0",
+    "method": "zond_getValidators",
+    "params": [],
+    "id": "1"
+}'
+```
+</TabItem>    
+<TabItem value="jsreq" label="Request" default>
+
+```js {} 
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': 'http://45.76.43.83:4545',
+  'headers': {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "jsonrpc": "2.0",
+    "method": "zond_getValidators",
+    "params": [],
+    "id": "1"
+  })
+
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+```
+</TabItem>
+<TabItem value="pyreq" label="Python Request" default>
+
+```py {}
+import requests
+import json
+
+url = "http://45.76.43.83:4545"
+
+payload = json.dumps({
+  "jsonrpc": "2.0",
+  "method": "zond_getValidators",
+  "params": [],
+  "id": "1"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+</TabItem>
+</Tabs>
+
+
+<Tabs
+    defaultValue="resp"
+    className="unique-tabs"
+    groupId="zond_getValidators-resp"
+    values={[
+        {label: 'Response', value: 'resp'},
+        {label: 'Error', value: 'err'},
+    ]}>
+<TabItem value="resp" label="Response" default>
+
+```json 
+{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "result": {
+        "epoch": 36,
+        "validatorsBySlotNumber": [
+            {
+                "slotNumber": 3600,
+                "leader": "0x204531495ca8a95b5e19fddde32e657014b3ff03",
+                "attestors": [
+                    "0x2036e0fad7fdc76a47793a871ef1cc0b00ef10e9",
+                    "0x2054969c4ea202ee6ccff556a51e1b91cdea3785"
+                ]
+            },
+            {
+                "slotNumber": 3601,
+                "leader": "0x2035d6ae250815d560a24463c8ec2f45a94c638f",
+                "attestors": [
+                    "0x2056f9c296f0c3f0df865367189550f062761f26"
+                ]
+            },
+            {
+                "slotNumber": 3602,
+                "leader": "0x201fa462de856f22df758515e74eb42a23e1f553",
+                "attestors": [
+                    "0x20312d5ee0f6f3d1e710d53d1d1271ebef1bed1c"
+                ]
+            },
+            {
+                "slotNumber": 3603,
+                "leader": "0x208ae5c055796e75c27a4e0669c5058f95c73aa9",
+                "attestors": [
+                    "0x201637a16423824cc1095fec7ba8802b8aab85eb"
+                ]
+            },
+            {
+                "slotNumber": 3604,
+                "leader": "0x207fdbdf8dbc027811831ec1705d6a96387cb8de",
+                "attestors": [
+                    "0x2039fa4744c130b3412a212133f697acf6a6ac15"
+                ]
+            },
+            {
+                "slotNumber": 3605,
+                "leader": "0x200b48fc364d114bd31522e7a905aea6b054e981",
+                "attestors": [
+                    "0x200da9d761044a0f1792518ff819227ddf25e1e5"
+                ]
+            },
+            {
+                "slotNumber": 3606,
+                "leader": "0x20f0d98ecb329c63be9ecee0d27d7f6c4f3c447f",
+                "attestors": [
+                    "0x20e467d8f19ebe0d7da1ed3bd25a1e945d58ee98"
+                ]
+            },
+            {
+                "slotNumber": 3607,
+                "leader": "0x20dc74c1960e9f85eba6cb972cb5eee6cb2223f1",
+                "attestors": [
+                    "0x20d2950a4f6d9767382cbfd5fb8867aee7029db2"
+                ]
+            },
+            {
+                "slotNumber": 3608,
+                "leader": "0x20b130fdf813dc3a241662ba4d7d91291209d3b6",
+                "attestors": [
+                    "0x20e5e02ef46389ab10c84040673bc3e24913bb9a"
+                ]
+            },
+            {
+                "slotNumber": 3609,
+                "leader": "0x2061c1651598cf3b3ec823b59e3ea0f4564e2a19",
+                "attestors": [
+                    "0x20c7a3871c87b203cfbda520e7d155ac5b50a579"
+                ]
+            },
+            {
+                "slotNumber": 3610,
+                "leader": "0x20909a66c707e7a6f0f02366474ad116e34c7f4a",
+                "attestors": [
+                    "0x2091e753aa72f0a195386cafa195185d4df72fff"
+                ]
+            },
+            {
+                "slotNumber": 3611,
+                "leader": "0x20950fdb643365ef92c55e83ab6150a3f4fbea76",
+                "attestors": [
+                    "0x20969124f9788fc77f6d479892a2741eea956f92"
+                ]
+            },
+            {
+                "slotNumber": 3612,
+                "leader": "0x20a96771d29feb2360ecb2e3476776c3e5915de5",
+                "attestors": [
+                    "0x2077b8aba30528fb8358e9b80e8f1784cdf352c7"
+                ]
+            },
+            {
+                "slotNumber": 3613,
+                "leader": "0x2015b151e4e3db6eceb66effcbeaf88fac4fd7b5",
+                "attestors": [
+                    "0x2016d4d291b4b3081ed9a336ffd8c4a798aba1c2"
+                ]
+            },
+            {
+                "slotNumber": 3614,
+                "leader": "0x20d0426a1c6afb3974d2e61fc3e2e92ee07eb09a",
+                "attestors": [
+                    "0x20e7e67abefd802b8492e31514d8004e18d0b630"
+                ]
+            },
+            {
+                "slotNumber": 3615,
+                "leader": "0x2060b10b5cc73f79d9f3fab1a05f148066db0229",
+                "attestors": [
+                    "0x20d588b2ded00ff82d9b5a39fa5dca52ae25c953"
+                ]
+            },
+            {
+                "slotNumber": 3616,
+                "leader": "0x20eaa383502f6695a6d9a0f4e3c508575847a54a",
+                "attestors": [
+                    "0x2091bfe7f5452f9fb5689283b04c03f02b034c0b"
+                ]
+            },
+            {
+                "slotNumber": 3617,
+                "leader": "0x207867c442ae9f7a6ef27d3add05d8b860368cd5",
+                "attestors": [
+                    "0x20f43d281eb9d4f5d84eb676760ee8ac234a29af"
+                ]
+            },
+            {
+                "slotNumber": 3618,
+                "leader": "0x20a2929170e4f754e990506bb887d21f74fde1b5",
+                "attestors": [
+                    "0x20bf47c13899fc387de0be385fa242893fb22406"
+                ]
+            },
+            {
+                "slotNumber": 3619,
+                "leader": "0x20a3541d56a941ba489559760675925b80e2e0d8",
+                "attestors": [
+                    "0x20b86443849021244943cac233c1ed6f76370fd7"
+                ]
+            },
+            {
+                "slotNumber": 3620,
+                "leader": "0x20c7a465ba5e613ef1d7c48176a2f8e20a8c57db",
+                "attestors": [
+                    "0x2046005e99e2f588b07a3c96c989e5cae2a32615"
+                ]
+            },
+            {
+                "slotNumber": 3621,
+                "leader": "0x20597a351cfa2c0b9db8b926573ff4b9427094e1",
+                "attestors": [
+                    "0x204ef217ed91bd3d762d35235fd0c36bcb2ae27b"
+                ]
+            },
+            {
+                "slotNumber": 3622,
+                "leader": "0x20532dc2bebac18f523029e799f913f6ba9cc66a",
+                "attestors": [
+                    "0x20bbe18be7d00fff4a8991c312eb5962caab0519"
+                ]
+            },
+            {
+                "slotNumber": 3623,
+                "leader": "0x2058c902322b97b4390ca4f7892e1835b23b6dd3",
+                "attestors": [
+                    "0x20aa9bbb3b1bdaa7e5c8fb8576dbc7ca1ca93372"
+                ]
+            },
+            {
+                "slotNumber": 3624,
+                "leader": "0x202b4a49dfd689182c5e01c2b323bc5241b15e28",
+                "attestors": [
+                    "0x2021b6e699dbb9ad656e81f30d1142ad4210c7a0"
+                ]
+            },
+            {
+                "slotNumber": 3625,
+                "leader": "0x20fb5b369b75e373184ab8bfa71d1bd757c22f33",
+                "attestors": [
+                    "0x20e0140569cf5634634de97d13a93a3bec851345"
+                ]
+            },
+            {
+                "slotNumber": 3626,
+                "leader": "0x20fbd872f4519dcbac613a3f16787b19fe3e61e8",
+                "attestors": [
+                    "0x20e28eeb179f18e424a2ad7d2a72515580ed29c4"
+                ]
+            },
+            {
+                "slotNumber": 3627,
+                "leader": "0x208906b40884c9ed7f725e5d933e078b85cdaa0b",
+                "attestors": [
+                    "0x2091b50936ec7d2ae82a54c3c346410795436ff8"
+                ]
+            },
+            {
+                "slotNumber": 3628,
+                "leader": "0x20508d9365ade8200361c53085f7e7ce2168fd41",
+                "attestors": [
+                    "0x20cd50ad28ac3e9863dcd70a267b96813ceac746"
+                ]
+            },
+            {
+                "slotNumber": 3629,
+                "leader": "0x206626865cd37336fa0e931ec0e0de5859787058",
+                "attestors": [
+                    "0x2088f4cb53ab2041a9ad2e0b42934323c057d9ce"
+                ]
+            },
+            {
+                "slotNumber": 3630,
+                "leader": "0x20dfc0d018d8d89f6bf49a8f8c811020dce71b6c",
+                "attestors": [
+                    "0x203a77939ea7d173ccf7cd8563ce45963464b6c2"
+                ]
+            },
+            {
+                "slotNumber": 3631,
+                "leader": "0x209f7f7af92f9e76b6bf8048a05b74c000dbffe2",
+                "attestors": [
+                    "0x209864ba71ece887353e3625a35f2e940be54ec6"
+                ]
+            },
+            {
+                "slotNumber": 3632,
+                "leader": "0x200366a9d738beaaf7d12dfd3d55406c64f487d6",
+                "attestors": [
+                    "0x2026afc34a6c876da1f13bc688ac080e73976176"
+                ]
+            },
+            {
+                "slotNumber": 3633,
+                "leader": "0x20cd171f9ea4d3a6f63f81a8d47df2210c07d828",
+                "attestors": [
+                    "0x20db2fa471e0399fd218473f41bd00ef13a8b930"
+                ]
+            },
+            {
+                "slotNumber": 3634,
+                "leader": "0x20ce57ed4b24f1d9e360cea364048363b602f8ee",
+                "attestors": [
+                    "0x2094027ad0ad27da92bc4231a659b9489d9d5cfb"
+                ]
+            },
+            {
+                "slotNumber": 3635,
+                "leader": "0x20027c0b7f2e91fad059a1f22d2c01436880a5d7",
+                "attestors": [
+                    "0x20d633a3e7e830c10c6717899d06c54631556121"
+                ]
+            },
+            {
+                "slotNumber": 3636,
+                "leader": "0x20fc9c799912cf3df921d323ea4144c0f0cf4345",
+                "attestors": [
+                    "0x200feecb139c787c2e4057a3029cc8f4fc57648f"
+                ]
+            },
+            {
+                "slotNumber": 3637,
+                "leader": "0x2044aae416493c7dda69990666a6ea8e4d852364",
+                "attestors": [
+                    "0x2028edd055c72d3451f367d7eb367148d2b898a1"
+                ]
+            },
+            {
+                "slotNumber": 3638,
+                "leader": "0x202b8049e88eb4ad0912512ca531ec7bc47c94a5",
+                "attestors": [
+                    "0x209049a785da4b0553f80a6de32992d196fe2449"
+                ]
+            },
+            {
+                "slotNumber": 3639,
+                "leader": "0x203f9459bb6dc29715e4f327e546c5154dbd8e33",
+                "attestors": [
+                    "0x20c4ee6cb97b4496defa0789046145637cd61712"
+                ]
+            },
+            {
+                "slotNumber": 3640,
+                "leader": "0x207b4f774f42515f8441aa37f913b569e9416842",
+                "attestors": [
+                    "0x20a314cb36413812d503a69e246bffcf7593f78d"
+                ]
+            },
+            {
+                "slotNumber": 3641,
+                "leader": "0x202b3a787540a8f6df705bc3e216c67b3ae7ed77",
+                "attestors": [
+                    "0x209e3d051d0795aa4f7dbcbadf5e6639d1c8eb21"
+                ]
+            },
+            {
+                "slotNumber": 3642,
+                "leader": "0x20bc07258b45335c29589a540ba38d08830be475",
+                "attestors": [
+                    "0x201bb18112af373f5b453a7950570b557aa1386d"
+                ]
+            },
+            {
+                "slotNumber": 3643,
+                "leader": "0x20a91a2370f3c83f5c6fb9a8a56f7e1f1a87e0af",
+                "attestors": [
+                    "0x20b8281a2167b0cc6517231f6fa296f54f31c615"
+                ]
+            },
+            {
+                "slotNumber": 3644,
+                "leader": "0x203d6f9af1a15e1fda78c4455615382c67864853",
+                "attestors": [
+                    "0x20e7b3bfee0eb96c067a60cd08a02fd7ee892832"
+                ]
+            },
+            {
+                "slotNumber": 3645,
+                "leader": "0x207819a4838b65d5f5067d899bc765002f180ae7",
+                "attestors": [
+                    "0x2053d56fd9caea090706b1821e265585c06c1b61"
+                ]
+            },
+            {
+                "slotNumber": 3646,
+                "leader": "0x20d3cb8588f5fe40ca59b44d856c883cfdce785f",
+                "attestors": [
+                    "0x20479a1fa5a819c8df0fa52d4f8e989bd5232168"
+                ]
+            },
+            {
+                "slotNumber": 3647,
+                "leader": "0x20cb06166dea83587b333383673bfeeb12848671",
+                "attestors": [
+                    "0x20f034f6f09ff54e9073670a9b7f5b8abcb594b6"
+                ]
+            },
+            {
+                "slotNumber": 3648,
+                "leader": "0x2090f14cda93f1b9a56c43dd67538886a1ac1f7f",
+                "attestors": [
+                    "0x208e1a5129e56d7b67103b6387c3fa828a3a2646"
+                ]
+            },
+            {
+                "slotNumber": 3649,
+                "leader": "0x204df43c5c2443fe58943d2fe452579a7ad98284",
+                "attestors": [
+                    "0x2035d21aa4c47b0a578ff01265969e4bf81d5a3f"
+                ]
+            },
+            {
+                "slotNumber": 3650,
+                "leader": "0x20129eeab5fcf3a0b3852a7d83083aef4a13a441",
+                "attestors": [
+                    "0x20854a1f3f1e4e0d683cc1ea0cea64ad3da621c0"
+                ]
+            },
+            {
+                "slotNumber": 3651,
+                "leader": "0x204b056e42a39ca24ab8bc0e1e90c80e79ff785f",
+                "attestors": [
+                    "0x2025725b18e578f99fc04237d918e8c347fd9e70"
+                ]
+            },
+            {
+                "slotNumber": 3652,
+                "leader": "0x20ab7ad096ec8fb9d2454da8188bf0a9ea186df0",
+                "attestors": [
+                    "0x2044a3a0f00bc3f5e0b54d8c71b2e3df838fdbbe"
+                ]
+            },
+            {
+                "slotNumber": 3653,
+                "leader": "0x20556a54f8c073c4f6146aacba36d509d729f182",
+                "attestors": [
+                    "0x2022d4383d83dbdd5d8636971a0ef61dc6837b9c"
+                ]
+            },
+            {
+                "slotNumber": 3654,
+                "leader": "0x200b662370d1451f059b93fb176c0eebcf8fff64",
+                "attestors": [
+                    "0x20acc5bc7042f9cbbf713388949fa9efa00c67d4"
+                ]
+            },
+            {
+                "slotNumber": 3655,
+                "leader": "0x204efda2eda8cc89eefc625e1fbff96a0ad5d612",
+                "attestors": [
+                    "0x203d8e85e8c87a9385a04e7287569ccc294dbe0a"
+                ]
+            },
+            {
+                "slotNumber": 3656,
+                "leader": "0x200ae4c0f912cd24f3bdf93a490d89a5432db0c0",
+                "attestors": [
+                    "0x20625d4c5061cc7bda71928097a25178c44617cb"
+                ]
+            },
+            {
+                "slotNumber": 3657,
+                "leader": "0x20d8c8738cf35521e47339a305d2c798606e13ae",
+                "attestors": [
+                    "0x20060e64a021ba5dec87853c5245b5183c321966"
+                ]
+            },
+            {
+                "slotNumber": 3658,
+                "leader": "0x20feab28a87046f527bf3141d5f11f19c3a88d0b",
+                "attestors": [
+                    "0x20c568d3a7e3b990e0b17367cd3c8a6f14628bb4"
+                ]
+            },
+            {
+                "slotNumber": 3659,
+                "leader": "0x20f35db76426500e779f052ce733114c4d4ca3ac",
+                "attestors": [
+                    "0x201312e0d497b88d39d3c521895e611f4a3d1adc"
+                ]
+            },
+            {
+                "slotNumber": 3660,
+                "leader": "0x20f379794207cb239f0225f90eec01945874dc45",
+                "attestors": [
+                    "0x20b7b2c320050e0bfae45b13177a52ec8ca14427"
+                ]
+            },
+            {
+                "slotNumber": 3661,
+                "leader": "0x2055e3e89e3e80277cf563cdbc8dca41f8fce8f3",
+                "attestors": [
+                    "0x20e2559f1d72f52f5df3835c663c3a85a06ea3e7"
+                ]
+            },
+            {
+                "slotNumber": 3662,
+                "leader": "0x20424d12c62bdb2309991d2a8c51f2535121bf33",
+                "attestors": [
+                    "0x202a4720aa1be0ca4047ab80b803bd9705124bac"
+                ]
+            },
+            {
+                "slotNumber": 3663,
+                "leader": "0x20b6458544f6fae51706663fc8ccf4186f4dad9c",
+                "attestors": [
+                    "0x2099744038caaaae2e7a1762d42c399176b4f0de"
+                ]
+            },
+            {
+                "slotNumber": 3664,
+                "leader": "0x204d7ddcbe39084e03a4a28443a8b4c2d9fd662e",
+                "attestors": [
+                    "0x20773fd7c6f96ce441d0dade8ad866f8079ac3ad"
+                ]
+            },
+            {
+                "slotNumber": 3665,
+                "leader": "0x20b8fc288bf70758638ad8bbb5e8fa0d74fa6fc2",
+                "attestors": [
+                    "0x209f01c739d016c86bb33ab4ac00c0ebdb9cf058"
+                ]
+            },
+            {
+                "slotNumber": 3666,
+                "leader": "0x20e63fe938abdf2c9d931e029c068431db2856a8",
+                "attestors": [
+                    "0x209a30f5924ddd426af21c444af81279592a0526"
+                ]
+            },
+            {
+                "slotNumber": 3667,
+                "leader": "0x20e3aca14fb692314fc46495d512162a575649e7",
+                "attestors": [
+                    "0x20d4f1055d953d2fc4f44714b87c0e8a8b8f34bf"
+                ]
+            },
+            {
+                "slotNumber": 3668,
+                "leader": "0x205b6ab1701c07a7207be23c3682732a3c316336",
+                "attestors": [
+                    "0x20e6524c6f651f9e3f2516c26624e04e63597d8d"
+                ]
+            },
+            {
+                "slotNumber": 3669,
+                "leader": "0x20413322e06d9e3aa79e1713bf1dda2e1f707ac7",
+                "attestors": [
+                    "0x2071dd86abf27c05b0be98bbc8fd36bacd64c92b"
+                ]
+            },
+            {
+                "slotNumber": 3670,
+                "leader": "0x2024e53eaf25640bd25c40614235dc7a20389d5d",
+                "attestors": [
+                    "0x207bd2b5f7eef32d067606937ee9d566544a1f97"
+                ]
+            },
+            {
+                "slotNumber": 3671,
+                "leader": "0x20b8be2af36463487e5983450ac68f5214165db3",
+                "attestors": [
+                    "0x201a90082a7a889d17e758b4f0fe326076adc109"
+                ]
+            },
+            {
+                "slotNumber": 3672,
+                "leader": "0x209b155c84afd4c93bb8660170da1302d38fb431",
+                "attestors": [
+                    "0x2006443a4a82526986773a17cd750dfc620d7a9d"
+                ]
+            },
+            {
+                "slotNumber": 3673,
+                "leader": "0x20857fdf224943ebc48744bd929391fbe1e4b104",
+                "attestors": [
+                    "0x20bf33198c36e1288e5abe64d2ac11afb0f5b0be"
+                ]
+            },
+            {
+                "slotNumber": 3674,
+                "leader": "0x20836fe871b38a448d19fe156c53d0ea2412dcd7",
+                "attestors": [
+                    "0x2012e70ddc6db71a13ddd22b7adbf5b7e17f0ed4"
+                ]
+            },
+            {
+                "slotNumber": 3675,
+                "leader": "0x20e2810f3f9d41948f403a8a6cd76c7d2a97e42b",
+                "attestors": [
+                    "0x20333eb17862c113c917158169482d621920a9b3"
+                ]
+            },
+            {
+                "slotNumber": 3676,
+                "leader": "0x20c1896c736ed41017f97a1593701c512b80f097",
+                "attestors": [
+                    "0x206d813ee42135c163b4f9f09ec8107faaef427b"
+                ]
+            },
+            {
+                "slotNumber": 3677,
+                "leader": "0x2081a3deec3374d67787e16f9bf3547e8833c871",
+                "attestors": [
+                    "0x20484fc6bb07fc9620b234c24fcea774a8cecc9a"
+                ]
+            },
+            {
+                "slotNumber": 3678,
+                "leader": "0x206ad6df9d7e3928df5af36fd1e922ef58be6676",
+                "attestors": [
+                    "0x204f41fc55d9b7dcff27044fc3b67792f5d59d5b"
+                ]
+            },
+            {
+                "slotNumber": 3679,
+                "leader": "0x20ba4f6d3558ffd8b857999c48dd69e6f69e9662",
+                "attestors": [
+                    "0x205fed03f2acc3bf589a0a19af74c3f91de15c71"
+                ]
+            },
+            {
+                "slotNumber": 3680,
+                "leader": "0x20cb0d9edd7929257484c6c613a836f12b310c04",
+                "attestors": [
+                    "0x20a61485d46bd9ed9a3f085e763d25def88e409d"
+                ]
+            },
+            {
+                "slotNumber": 3681,
+                "leader": "0x20d759d1cb87c0e5648a6182c85fc76e0cd2aaf0",
+                "attestors": [
+                    "0x2048a215d0beda7697246fa2b837ff5e4fb7dca6"
+                ]
+            },
+            {
+                "slotNumber": 3682,
+                "leader": "0x20edf6a889cb267c397775562d21ad5022d47b49",
+                "attestors": [
+                    "0x209253f3f8a27abcf7d5819551d872e5b32c13c1"
+                ]
+            },
+            {
+                "slotNumber": 3683,
+                "leader": "0x20062e321469ac1648390cb5a4ab6de04822e0b8",
+                "attestors": [
+                    "0x209b66fab7e9375081ed66000d633a4884f64dce"
+                ]
+            },
+            {
+                "slotNumber": 3684,
+                "leader": "0x205dda0af313e1e18da40f73b558fe4542683c1f",
+                "attestors": [
+                    "0x203acf56648865d0719884ac2f02f3d6368bfbeb"
+                ]
+            },
+            {
+                "slotNumber": 3685,
+                "leader": "0x20e2c1a80358155897dfc385a438556e7425a53b",
+                "attestors": [
+                    "0x20778a5e9b67957c93b8a06fdee838d3267d3d1e"
+                ]
+            },
+            {
+                "slotNumber": 3686,
+                "leader": "0x208a2e9b827ebd0bfd6ce8d9ece953e45f6cb063",
+                "attestors": [
+                    "0x20cc058c7ed40e7f7c1a652013bb44c596e4d9b9"
+                ]
+            },
+            {
+                "slotNumber": 3687,
+                "leader": "0x209d0eb9f8fe629b80d586a657b7d2b03f2063da",
+                "attestors": [
+                    "0x200603c44127e605b1b50348ce087d36883b4b73"
+                ]
+            },
+            {
+                "slotNumber": 3688,
+                "leader": "0x2058dd9aeac68799b5cbc15a779dc1cd062f6ba8",
+                "attestors": [
+                    "0x20a5fd85aebefa2b4d9e62b86cbaf28ac51534e6"
+                ]
+            },
+            {
+                "slotNumber": 3689,
+                "leader": "0x2006d3b19e7fb3bfec462b281129c27da54c1bf4",
+                "attestors": [
+                    "0x20719a41e5d442ba7b7ee3fbd18e8a8141af7771"
+                ]
+            },
+            {
+                "slotNumber": 3690,
+                "leader": "0x209524eccc3a3a1f343beb8e01f033a29c044854",
+                "attestors": [
+                    "0x205828bd80123ae1921f6d5c55df262148e51312"
+                ]
+            },
+            {
+                "slotNumber": 3691,
+                "leader": "0x2053bb6f48f7db8f0d9d8245ef34c580a2b9a685",
+                "attestors": [
+                    "0x2068163a94d47adbbed80972f18b81767f30baaf"
+                ]
+            },
+            {
+                "slotNumber": 3692,
+                "leader": "0x2031d89421e42cc2f66fda35abae6bb50e3bfe82",
+                "attestors": [
+                    "0x20c95cf572c6b6dc64ff03c4204de199011d97c3"
+                ]
+            },
+            {
+                "slotNumber": 3693,
+                "leader": "0x207199d9748daaca687f05ab46b2a7abf14cfa24",
+                "attestors": [
+                    "0x20ab39f84ab93f080b2c2ac80dff2b7b49f974ba"
+                ]
+            },
+            {
+                "slotNumber": 3694,
+                "leader": "0x200e87bbff1a2d8cfe014556d1d357c9f4f77201",
+                "attestors": [
+                    "0x20b0662092e132427dc7488918cd3d1f68051b60"
+                ]
+            },
+            {
+                "slotNumber": 3695,
+                "leader": "0x2050c96f7b671a803ef5a66c03595d9bf6d4140b",
+                "attestors": [
+                    "0x20a828d797cd5da70b10a4a9587956cbd23dd8d1"
+                ]
+            },
+            {
+                "slotNumber": 3696,
+                "leader": "0x209d3abd352710ef12c03b4bc7e0eca46438be86",
+                "attestors": [
+                    "0x2042715f2985ebb94caee92d3cd788cf257df491"
+                ]
+            },
+            {
+                "slotNumber": 3697,
+                "leader": "0x201fec54d314ed4bf687dff667fe1d9f893eb315",
+                "attestors": [
+                    "0x208c3a453bdebd76d53819b7f2c639ff0662c0cc"
+                ]
+            },
+            {
+                "slotNumber": 3698,
+                "leader": "0x20b192891553345e8b9aca8fb8396403298f80ba",
+                "attestors": [
+                    "0x20860dafbff6b6bf1caff21313968784e9529012"
+                ]
+            },
+            {
+                "slotNumber": 3699,
+                "leader": "0x20a8c3b0d5b6912307118925fbedd6da26d01a05",
+                "attestors": [
+                    "0x2054c001cec157c583f42d437e3ae046df0f4992"
+                ]
+            }
+        ]
+    }
+}
+```
+</TabItem>
+<TabItem value="err" label="Error" default>
+
+</TabItem>
+</Tabs>
+
+
+</TabItem>
+</Tabs>
+<br />
+
+
+
+### `zond_getStakeBalance`
+
+Returns the balance contained in the wallet for the given block, or one of: *latest*, *earliest*, *pending*. 
+
+- *latest* - Returns the latest address value known to the chain
+- *earliest* - Returns the first know balance from the address
+- *pending* - Returns balance pending any current transactions
+
+> See the [default block parameters](#default-block-parameter) section for more info
+
+<Tabs
+    defaultValue="code"
+    className="unique-tabs"
+    groupId="zond_getStakeBalance"
+    values={[
+        {label: 'Code', value: 'code'},
+        {label: 'Usage', value: 'usage'},
+    ]}>
+
+<TabItem value="usage">
+
+#### Method
+
+*POST*
+
+#### Parameters
+
+| Field | Type | Required |  Description | 
+|---------|-----|-----|-------|
+| address | DATA | true  | Zond address to check for balance |
+| blockNrOrHash | QUANTITY\TAG | true | integer block number (hex), or the string `"latest"`, `"earliest"` or `"pending"`, see the [default block parameter](#default-block-parameter) | 
+
+#### Returns
+
+| Return Value | Type |  Description | 
+|---------|-----|-------|
+| stakeBalance  | INT (hex) | Current stake balance returned as Hex integer for the address given |  
+| pendingStakeBalance | INT (hex) | Pending stake balance awaiting next epoch, returned as Hex integer for the address given |  
+
+</TabItem>
+
+<TabItem value="code" label="Code">
+
+Required parameters: `address` (*hex*), `blockNrOrHash` (*rpc.BlockNumberOrHash*)
+
+<Tabs
+    defaultValue="shreq"
+    className="unique-tabs"
+    groupId="zond_getStakeBalance-code"
+    values={[
+        {label: 'Curl Request', value: 'shreq'},
+        {label: 'JS Request', value: 'jsreq'},
+        {label: 'Python Request', value: 'pyreq'},
+    ]}>
+<TabItem value="shreq" label="Curl Request" default>
+
+```bash
+curl --location --request POST 'http://45.76.43.83:4545' \
+--header 'Content-Type: application/json' \
+--data-raw '{"jsonrpc":"2.0","method":"zond_getStakeBalance","params":["0x200117c87b91da26b8c1aa823cad3b6ad30f7e8d", "latest"],"id":1}'
+```
+</TabItem>    
+<TabItem value="jsreq" label="Request" default>
+
+```js {} 
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': 'http://45.76.43.83:4545',
+  'headers': {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "jsonrpc": "2.0",
+    "method": "zond_getStakeBalance",
+    "params": [
+      "0x200117c87b91da26b8c1aa823cad3b6ad30f7e8d",
+      "latest"
+    ],
+    "id": 1
+  })
+
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+```
+</TabItem>
+<TabItem value="pyreq" label="Python Request" default>
+
+```py {}
+import requests
+import json
+
+url = "http://45.76.43.83:4545"
+
+payload = json.dumps({
+  "jsonrpc": "2.0",
+  "method": "zond_getStakeBalance",
+  "params": [
+    "0x200117c87b91da26b8c1aa823cad3b6ad30f7e8d",
+    "latest"
+  ],
+  "id": 1
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+</TabItem>
+</Tabs>
+
+<Tabs
+    defaultValue="resp"
+    className="unique-tabs"
+    groupId="zond_getStakeBalance-resp"
+    values={[
+        {label: 'Response', value: 'resp'},
+        {label: 'Error', value: 'err'},
+    ]}>
+<TabItem value="resp" label="Response" default>
+
+```json 
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "stakeBalance": "0x0",
+        "pendingStakeBalance": "0x5af3107a4000"
+    }
+}
+```
+
+</TabItem>
+<TabItem value="err" label="Error" default>
+
+```json title="No Address Given"
+{"jsonrpc":"2.0","id":1,"error":{"code":-32602,"message":"invalid argument 0: hex string has length 0, want 40 for common.Address"}}
+```
+
+```json title="Address Missing 0x Prefix"
+{"jsonrpc":"2.0","id":1,"error":{"code":-32602,"message":"invalid argument 0: json: cannot unmarshal hex string without 0x prefix into Go value of type common.Address"}}
+```
+
+```json title="Address Invalid"
+{"jsonrpc":"2.0","id":1,"error":{"code":-32602,"message":"invalid argument 0: json: cannot unmarshal invalid hex string into Go value of type common.Address"}}
+```
+
+</TabItem>
+</Tabs>
+
+:::note
+Balance result returned as a HEX value with the `0x` prefix included.
+:::
+
+</TabItem>
+</Tabs>
+<br />
