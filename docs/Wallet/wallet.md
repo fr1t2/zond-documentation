@@ -7,7 +7,7 @@ hide_table_of_contents: false
 sidebar_label: Zond Wallet
 sidebar_position: 1
 pagination_label: Zond Wallet
-custom_edit_url: https://github.com/theQRL/documentation/edit/main/docs/Wallet/qrl-wallet.md
+custom_edit_url: https://github.com/theQRL/zond-documentation/edit/main/docs/Wallet/wallet.md
 description: Zond Wallet
 keywords:
   - docs
