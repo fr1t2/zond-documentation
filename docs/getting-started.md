@@ -25,15 +25,13 @@ import CodeBlock from '@theme/CodeBlock';
 
 :::caution DOCUMENT STATUS 
 <span>This document is in: <b>{frontMatter.docstatus}</b> status and needs additional input!</span>
+
+- POS explainer, including cryptography used and any special considerations to be highlighted.
 :::
 
 
 Welcome to the Quantum Resistant Ledger Zond documentation! This is a work in progress and will be improved as we build project Zond. Ensure
 
-
-:::caution INFO NEEDED
-<span>POS explainer, including cryptography used and any special considerations to be highlighted.</span>
-:::
 
 
 

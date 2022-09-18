@@ -24,83 +24,56 @@ import TabItem from '@theme/TabItem';
 :::caution DOCUMENT STATUS 
 <span>This document is in: <b>{frontMatter.docstatus}</b> status and needs additional input!</span>
 
-- Need install instructions for MacOS
-- Need install instruction for Windows
+- Need install instructions for other OS's
 :::
-
-
-Installation instructions for The QRL POS Project Zond node installation. This document covers getting started installing the Zond node software and will allow interaction with the Zond blockchain, as well as additional tools.
 
 :::danger
 These instructions will change frequently as we develop the node software. Check back often as these will be kept up to date until the final solution is in place.
 :::
 
-
-## Development Install
-
-
-To install the development node used for initial testing and development of both the POS network and QRVM smart contracts. Follow these directions to install the node locally.
+This document covers getting started installing the Zond node software and will allow interaction with the Zond blockchain.
 
 
 ### Prerequisite
 
-- GO is installed
-- Remove any previous node installation files `~/.zond`
+- Go version 1.18.6 or greater is installed `go version`
 - Ensure the local copy of the Zond github repo has the latest code
-- Bootstrap files are the latest
 
 :::info Minimum Node Hardware Requirements
 There are some basic requirements that must be met to run a Zond node *(Yet to be defined)*. See the [Zond Node Requirements](node-requirements) documentation for more info.
 :::
 
 
-### BootStrap Files
+## Zond Node Installation
 
-Bootstrap files are generated during the genesis of the DEVNET and will need to be copied into your local node in order to sync with the public network. We do this now due to the frequent changes being released during development. This will not be needed for production.
+Follow the directions below to get started running a Zond POS Node.
 
-The latest Bootstrap files can be downloaded here [zond-docs.theqrl.org/node/bootstrap-devnet.zip](https://zond-docs.theqrl.org/node/bootstrap-devnet.zip) or following the installation directions below.
+<Tabs
+    defaultValue="ubuntu"
+    groupId="os"
+    values={[
+        {label: 'Ubuntu', value: 'ubuntu'},
+        {label: 'MacOS', value: 'macos'},
+        {label: 'Windows', value: 'windows'},
+    ]}>
 
-####  Bootstrap Directory Tree
+<TabItem value="ubuntu">
 
-```bash 
-~/Downloads/bootstrap-devnet/
-├── block
-│   └── genesis
-│       └── devnet
-│           ├── genesis.yml
-│           └── prestate.yml
-└── config
-    └── config.go
+Installation instructions for the Zond Node on Ubuntu.
 
-```
+##### Requirements
 
-### Development Install 
+- `build-essential` is installed including `gcc`
+
+#### Install Steps
+
 
 ```bash
-# Remove any old installs and download the Zond node software into users home directory 
-rm -rf ~/.zond
-rm -rf ~/zond
-rm -rf ~/Downloads/bootstrap-devnet 
-rm -rf ~/Downloads/bootstrap-devnet.zip
-
+sudo apt update
+sudo apt install build-essential
 
 # clone the zond repo, grabbing the latest code
 git clone https://github.com/theqrl/zond ~/zond
-
-# Download the bootstrap files and unzip
-wget https://zond-docs.theqrl.org/node/bootstrap-devnet.zip -O ~/Downloads/bootstrap-devnet.zip
-unzip ~/Downloads/bootstrap-devnet.zip -d ~/Downloads/
-
-# Copy the genesis files and configuration into the correct directories
-cp -r ~/Downloads/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
-cp ~/Downloads/bootstrap-devnet/config/config.go ~/zond/config/config.go
-
-## Update the PeerList: configuration with foundation peer address
-#  In config/config.go update PeerList 
-#  from:
-        PeerList:                []string{},
-#  to:
-        PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmU6Uo93bSgU7bA8bkbdNhSfbmp7S5XJEcSqgrdLzH6ksT"},
 
 # Build the node
 cd zond
@@ -108,7 +81,11 @@ go build ~/zond/cmd/zond-cli
 go build ./cmd/gzond
 ````
 
-### Development Install Script
+:::tip 
+This is the recommended installation method, and most common way to run a Zond Node.
+:::
+
+#### Install Script
 
 For a simple, no fuss node install use the script Jack provided us. The code can be found here [github.com/jackalyst/zond-init](https://github.com/jackalyst/zond-init).
 
@@ -135,61 +112,6 @@ It is important to read and understand what a script is doing on your machine be
 
 There will be a few questions to answer, select (Y)es to each and there will be a running node in a screen session. `screen -r` to access it or see the logs in the `~/.zond` directory `tail -f ~/.zond/zond-daemon.log` 
 
-
-## Zond Node Installation
-
-Follow the directions below to get started running a Zond POS Node.
-
-<Tabs
-    defaultValue="ubuntu"
-    groupId="os"
-    values={[
-        {label: 'Ubuntu', value: 'ubuntu'},
-        {label: 'MacOS', value: 'macos'},
-        {label: 'Windows', value: 'windows'},
-    ]}>
-
-<TabItem value="ubuntu">
-
-#### Zond Ubuntu Installation
-Installation instructions for the Zond Node on Ubuntu.
-
-Tested in the latest LTS version `Ubuntu 20.04`
-
-```bash
-rm -rf ~/.zond
-rm -rf ~/zond
-rm -rf ~/Downloads/bootstrap-devnet 
-rm -rf ~/Downloads/bootstrap-devnet.zip
-
-
-# clone the zond repo, grabbing the latest code
-git clone https://github.com/theqrl/zond ~/zond
-
-# Download the bootstrap files and unzip
-wget https://zond-docs.theqrl.org/node/bootstrap-devnet.zip -O ~/Downloads/bootstrap-devnet.zip
-unzip ~/Downloads/bootstrap-devnet.zip -d ~/Downloads/
-
-# Copy the genesis files and configuration into the correct directories
-cp -r ~/Downloads/bootstrap-devnet/block/genesis/devnet ~/zond/block/genesis/
-cp ~/Downloads/bootstrap-devnet/config/config.go ~/zond/config/config.go
-
-## Update the PeerList: configuration with foundation peer address
-#  In config/config.go update PeerList 
-#  from:
-        PeerList:                []string{},
-#  to:
-        PeerList:                []string{"/ip4/45.76.43.83/tcp/15005/p2p/QmU6Uo93bSgU7bA8bkbdNhSfbmp7S5XJEcSqgrdLzH6ksT"},
-
-# Build the node
-cd zond
-go build ~/zond/cmd/zond-cli
-go build ./cmd/gzond
-````
-
-:::tip 
-This is the recommended installation method, and most common way to run a Zond Node.
-:::
 
 </TabItem>
 <TabItem value="macos">
