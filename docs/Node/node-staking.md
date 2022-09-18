@@ -69,13 +69,13 @@ The following things are required to begin the staking process. Follow the instr
 - Zond Dilithium Address in a wallet.json file with $$10,000 \text{QRL}$$ in that Dilithium Address address 
 
 :::note
-See the [zond-cli wallet documentation](/wallet/zond-cli/node-cli-wallet#generate-new-dilithium-address)
+See the [zond-cli wallet documentation](/wallet/node/node-cli-wallet#generate-new-dilithium-address)
 :::
 
 ### Generate Stake TX
 
 
-With the Zond Node installed, and a fully funded dilithium address, generate the `dilithiul_keys` file to use for staking and broadcast the staking transaction.
+With the Zond Node installed, and a fully funded dilithium address, generate the `dilithium_keys` file to use for staking and broadcast the staking transaction.
 
 
 :::info
