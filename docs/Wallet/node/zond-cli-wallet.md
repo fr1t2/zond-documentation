@@ -27,7 +27,7 @@ slug: /wallet/node/node-cli-wallet
 
 
 :::note NOTE: ZOND NODE RERQUIRED
-All of these commands require the [zond node is installed](/node/node-install) and the `zond-cli` executable is accessible in the current directory.
+All of these commands require the [zond node is installed](/node/node-installation) and the `zond-cli` executable is accessible in the current directory.
 :::
 
 ### Address Identification
