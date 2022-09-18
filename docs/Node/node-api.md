@@ -7,7 +7,7 @@ hide_table_of_contents: false
 sidebar_label: Zond Node - API
 sidebar_position: 6
 pagination_label: Zond Node - API
-custom_edit_url: https://github.com/theqrl/documentation/edit/master/docs/basics/what-is-qrl.md
+custom_edit_url: https://github.com/theQRL/zond-documentation/edit/main/docs/Node/node-api.md
 description: Zond Node API
 keywords:
   - docs

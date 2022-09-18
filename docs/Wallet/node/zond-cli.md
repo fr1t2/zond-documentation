@@ -7,7 +7,7 @@ hide_table_of_contents: false
 sidebar_label: Zond Node - CLI
 sidebar_position: 1
 pagination_label: Zond Node - CLI
-custom_edit_url: https://github.com/theqrl/documentation/edit/master/docs/basics/what-is-qrl.md
+custom_edit_url: https://github.com/theQRL/zond-documentation/edit/main/docs/Wallet/node/zond-cli.md
 description: Zond Node CLI
 keywords:
   - docs
