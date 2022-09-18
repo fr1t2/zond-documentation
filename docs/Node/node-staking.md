@@ -83,7 +83,7 @@ This command expects there is a wallet.json file in the current directory. Use t
 ::: 
 
 ```bash
-./zond/zond-cli tx stake --account-index 1 --amount 10000000000000 --gas 1000 --gas-price 0 --nonce 0 --broadcast --remote-addr 45.76.43.83:19009
+./zond/zond-cli tx stake --account-index 1 --amount 10000000000000 --gas 1000 --gas-price 0 --nonce 0 --broadcast --remote-addr 45.76.43.83:19009 --dilithium-file ~/.zond/dilithium_keys
 ```
 
 This will broadcast the stake transaction and output a `dilithium_keys` file into the current directory the command was issued. Move this file to the root node  directory `~/.zond/dilithium_keys`

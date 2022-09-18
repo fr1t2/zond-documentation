@@ -177,7 +177,7 @@ Output looks something like this.
 [2022-09-07 18:22:22]  INFO Protocol Txs Count 2 | Txs Count 0
 ```
 
-This will start the node software, create a default node directory at `~/.qrl` and begin syncing blocks from the known peers.
+This will start the node software, create a default node directory at `~/.zond` and begin syncing blocks from the known peers.
 
 
 ##### Stop The Node
