@@ -93,7 +93,7 @@ This will broadcast the stake transaction and output a `dilithium_keys` file int
 
 
 :::note
-Find the address index using the `./zond-cli wallet list` command. [More information can be found here](node/node-cli#wallet-list)
+Find the address index using the `./zond-cli wallet list` command. [More information can be found here](/node/node-cli#wallet-list)
 :::
 
 
@@ -111,7 +111,7 @@ curl --location --request POST 'http://45.76.43.83:4545' \
 ```
 
 :::note
-Additional information on the API calls available, see the [Zond API documentation](node/node-api#zond_getstakebalance).
+Additional information on the API calls available, see the [Zond API documentation](/node/node-api#zond_getstakebalance).
 :::
 
 ### Current Epoch Validators
