@@ -103,7 +103,7 @@ module.exports = {
           position: 'right'
         },
         {
-          href: 'https://github.com/theqrl/documentation',
+          href: 'https://github.com/theqrl',
           label: 'GitHub',
           position: 'right',
         },
